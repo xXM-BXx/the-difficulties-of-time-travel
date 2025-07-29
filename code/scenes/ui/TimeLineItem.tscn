@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdnmqjtjle834"]
+
+[ext_resource type="Texture2D" uid="uid://de8bya06mtq51" path="res://assets/ui/TimeLineItem.png" id="1_38rwc"]
+[ext_resource type="Script" uid="uid://cwbm06xru6s51" path="res://scripts/ui/TimeLineItem.cs" id="1_cs6wi"]
+[ext_resource type="Texture2D" uid="uid://cegc4133ti2xo" path="res://assets/ui/Eye.png" id="3_e4wtq"]
+[ext_resource type="Texture2D" uid="uid://qt88330l7kl5" path="res://assets/ui/LayerMark.png" id="4_tkhk3"]
+
+[node name="TimeLineItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_cs6wi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -3.0
+offset_right = 32.0
+offset_bottom = 37.0
+mouse_filter = 2
+texture = ExtResource("1_38rwc")
+stretch_mode = 2
+
+[node name="Eye" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = -4.0
+offset_right = 48.0
+offset_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource("3_e4wtq")
+stretch_mode = 2
+
+[node name="Marker" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = -4.0
+offset_right = 48.0
+offset_bottom = 36.0
+mouse_filter = 2
+texture = ExtResource("4_tkhk3")
+stretch_mode = 2

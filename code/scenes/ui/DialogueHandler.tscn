@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://eftkhj2nugsv"]
+
+[ext_resource type="Script" uid="uid://byygo7edmmou5" path="res://scripts/ui/DialogueHandler.cs" id="1_u3fmc"]
+[ext_resource type="Theme" uid="uid://ceqaxxmsfnx8t" path="res://assets/ui-style/main_button_theme.tres" id="2_6ntd7"]
+[ext_resource type="TileSet" uid="uid://di1bivifr4f4u" path="res://assets/tilesets/Entities.tres" id="3_j8vdp"]
+[ext_resource type="Texture2D" uid="uid://bgrsyrbdc7ags" path="res://assets/ui/EnterSymbol.png" id="4_6ntd7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ntd7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8vdp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ydaka"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iot6q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxv2o"]
+
+[node name="DialogueHandler" type="PanelContainer"]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_u3fmc")
+
+[node name="Horizontal" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="DialoguePortrait" type="Control" parent="Horizontal"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Horizontal/DialoguePortrait"]
+position = Vector2(-9, 13)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("3_j8vdp")
+
+[node name="Text" type="VBoxContainer" parent="Horizontal"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="Horizontal/Text"]
+layout_mode = 2
+theme = ExtResource("2_6ntd7")
+theme_override_font_sizes/font_size = 15
+text = "Name
+"
+autowrap_mode = 3
+
+[node name="Text" type="RichTextLabel" parent="Horizontal/Text"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_6ntd7")
+theme_override_font_sizes/normal_font_size = 10
+text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="Horizontal/Text/Text"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+texture = ExtResource("4_6ntd7")
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6ntd7")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_j8vdp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ydaka")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iot6q")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jxv2o")
+
+[connection signal="minimum_size_changed" from="Horizontal/Text/Text" to="." method="OnSizeChanged"]
+[connection signal="size_flags_changed" from="Horizontal/Text/Text" to="." method="OnSizeChanged"]
+[connection signal="pressed" from="Button" to="." method="OnClickCallback"]

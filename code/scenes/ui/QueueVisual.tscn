@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8b0xofrcd5i3"]
+
+[ext_resource type="Script" uid="uid://dpf52fkkj3rf4" path="res://scripts/ui/QueueVisual.cs" id="1_1ju3h"]
+[ext_resource type="PackedScene" uid="uid://ce2ejp35bo0uu" path="res://scenes/ui/QueueItem.tscn" id="1_id7iq"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 5.0
+offset_right = 48.0
+offset_bottom = 37.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+script = ExtResource("1_1ju3h")
+
+[node name="QueueItem" parent="." instance=ExtResource("1_id7iq")]
+z_index = 4
+layout_mode = 2
+
+[node name="QueueItem3" parent="." instance=ExtResource("1_id7iq")]
+z_index = 3
+layout_mode = 2
+
+[node name="QueueItem2" parent="." instance=ExtResource("1_id7iq")]
+z_index = 2
+layout_mode = 2
+
+[node name="QueueItem4" parent="." instance=ExtResource("1_id7iq")]
+z_index = 1
+layout_mode = 2

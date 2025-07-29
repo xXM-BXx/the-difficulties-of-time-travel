@@ -1,0 +1,200 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwk8ixfy0n2gi"]
+
+[ext_resource type="Script" uid="uid://e4h4q5qtwxg5" path="res://scripts/UI.cs" id="1_s64wo"]
+[ext_resource type="PackedScene" uid="uid://0hwr4pp7bucr" path="res://scenes/ui/TimeLine.tscn" id="2_tnv4l"]
+[ext_resource type="PackedScene" uid="uid://eftkhj2nugsv" path="res://scenes/ui/DialogueHandler.tscn" id="4_j3nm3"]
+[ext_resource type="Theme" uid="uid://ceqaxxmsfnx8t" path="res://assets/ui-style/main_button_theme.tres" id="5_dqg8s"]
+[ext_resource type="Texture2D" uid="uid://bria01gv4krcn" path="res://assets/ui/PauseSymbol.png" id="5_tnv4l"]
+[ext_resource type="PackedScene" uid="uid://c8b0xofrcd5i3" path="res://scenes/ui/QueueVisual.tscn" id="6_tnv4l"]
+[ext_resource type="PackedScene" uid="uid://b0wf4ksi7kran" path="res://scenes/ui/HealthUi.tscn" id="7_j3nm3"]
+[ext_resource type="Texture2D" uid="uid://cypq8emis62fi" path="res://assets/ui/UIBox.png" id="8_p6rkd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bcuxr"]
+texture = ExtResource("8_p6rkd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_s64wo")
+
+[node name="Scaler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1440.0
+offset_bottom = -810.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="TimeLine" parent="Scaler" instance=ExtResource("2_tnv4l")]
+layout_mode = 1
+
+[node name="QueueVisual" parent="Scaler" instance=ExtResource("6_tnv4l")]
+layout_mode = 1
+
+[node name="Score" type="Label" parent="Scaler"]
+visible = false
+layout_mode = 0
+offset_left = 386.0
+offset_top = 4.0
+offset_right = 454.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_bcuxr")
+text = "Score: ???"
+
+[node name="DialogueHandler" parent="Scaler" instance=ExtResource("4_j3nm3")]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -160.0
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 57.0
+grow_vertical = 1
+
+[node name="PauseButton" type="Button" parent="Scaler"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 22.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="Scaler/PauseButton"]
+layout_mode = 0
+offset_left = 5.75
+offset_top = 3.75
+offset_right = 11.75
+offset_bottom = 13.75
+texture = ExtResource("5_tnv4l")
+
+[node name="PauseMenu" type="PanelContainer" parent="Scaler"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -27.0
+offset_right = 44.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_dqg8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/PauseMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Scaler/PauseMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="Scaler/PauseMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "To Main Menu"
+
+[node name="GameOverMenu" type="PanelContainer" parent="Scaler"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -27.0
+offset_right = 44.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_dqg8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/GameOverMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="Scaler/GameOverMenu/VBoxContainer"]
+layout_mode = 2
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="Scaler/GameOverMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "To Main Menu"
+
+[node name="TutorialEndMenu" type="PanelContainer" parent="Scaler"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -27.0
+offset_right = 44.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_dqg8s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Scaler/TutorialEndMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="Scaler/TutorialEndMenu/VBoxContainer"]
+layout_mode = 2
+text = "You finished
+the Tutorial!
+Try out end-
+less mode 
+next."
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="Scaler/TutorialEndMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "To Main Menu"
+
+[node name="HealthUI" parent="Scaler" instance=ExtResource("7_j3nm3")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = -8.0
+grow_vertical = 0
+
+[connection signal="OnClick" from="Scaler/DialogueHandler" to="." method="OnDialogueClicked"]
+[connection signal="pressed" from="Scaler/PauseButton" to="." method="OnPauseButtonPressed"]
+[connection signal="pressed" from="Scaler/PauseMenu/VBoxContainer/ResumeButton" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="Scaler/PauseMenu/VBoxContainer/MainMenuButton" to="." method="OnExitButtonPressed"]
+[connection signal="pressed" from="Scaler/GameOverMenu/VBoxContainer/MainMenuButton" to="." method="OnExitButtonPressed"]
+[connection signal="pressed" from="Scaler/TutorialEndMenu/VBoxContainer/MainMenuButton" to="." method="OnExitButtonPressed"]

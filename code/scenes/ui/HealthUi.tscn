@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0wf4ksi7kran"]
+
+[ext_resource type="Script" uid="uid://bxohasa5huro4" path="res://scripts/ui/HealthUi.cs" id="1_7kinn"]
+[ext_resource type="Texture2D" uid="uid://cqn7qk3m73wy3" path="res://assets/ui/Heart.png" id="1_hxf8y"]
+
+[node name="HealthUI" type="Control"]
+custom_minimum_size = Vector2(30, 12)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 83.0
+offset_bottom = 12.0
+script = ExtResource("1_7kinn")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -6.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 20.0
+value = 20.0
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 14.0
+offset_bottom = 12.0
+texture = ExtResource("1_hxf8y")
+stretch_mode = 2

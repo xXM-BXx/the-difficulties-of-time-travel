@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2c2l187yvm3i"]
+
+[ext_resource type="Script" uid="uid://w3735i868x6a" path="res://scripts/Entities.cs" id="1_4pct7"]
+[ext_resource type="Texture2D" uid="uid://b6gk6mpf282gb" path="res://assets/marker/MouseMarker.png" id="2_67lor"]
+[ext_resource type="Texture2D" uid="uid://du0muskc5gxjg" path="res://assets/marker/CurrentMarker.png" id="2_j1trd"]
+[ext_resource type="Texture2D" uid="uid://bwklbct6aem7u" path="res://assets/marker/PossibleMarker.png" id="3_la1qs"]
+[ext_resource type="TileSet" uid="uid://di1bivifr4f4u" path="res://assets/tilesets/Entities.tres" id="5_dbtm0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwqfh"]
+texture = ExtResource("2_j1trd")
+texture_region_size = Vector2i(32, 16)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bkloe"]
+texture = ExtResource("3_la1qs")
+texture_region_size = Vector2i(32, 16)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tiuu8"]
+texture = ExtResource("2_67lor")
+texture_region_size = Vector2i(32, 16)
+use_texture_padding = false
+0:0/0 = 0
+0:0/0/y_sort_origin = 2
+
+[sub_resource type="TileSet" id="TileSet_2em37"]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(32, 16)
+custom_data_layer_0/name = "dist"
+custom_data_layer_0/type = 2
+sources/0 = SubResource("TileSetAtlasSource_wwqfh")
+sources/1 = SubResource("TileSetAtlasSource_bkloe")
+sources/2 = SubResource("TileSetAtlasSource_tiuu8")
+
+[node name="Entities" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("1_4pct7")
+_targetScreenSize = Vector2i(380, 230)
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="MouseSnapping" type="TileMapLayer" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+use_parent_material = true
+tile_set = SubResource("TileSet_2em37")
+rendering_quadrant_size = 1
+collision_enabled = false
+
+[node name="MovementOptions" type="TileMapLayer" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+use_parent_material = true
+tile_set = SubResource("TileSet_2em37")
+collision_enabled = false
+
+[node name="EntityStorage" type="TileMapLayer" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+use_parent_material = true
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("5_dbtm0")
+rendering_quadrant_size = 1
+collision_enabled = false

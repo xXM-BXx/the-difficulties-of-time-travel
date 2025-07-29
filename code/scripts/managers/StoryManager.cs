@@ -61,6 +61,12 @@ public partial class StoryManager : Node
             async () => { await World.Instance.Entities.ToSignal(World.Instance.Entities, "AllEnemiesDefeated"); },
             async () =>
             {
+                if (World.Instance.Entities.GetCharacterIdAtPosition(new(-1, -2)) != -1)
+                    await World.Instance.Entities.AnimatedMove(new(-1, -2), new HexCoords(-1, -1),
+                        new List<HexCoords> { new(-1, -2), new(-1, -1) });
+                if (World.Instance.Entities.GetCharacterIdAtPosition(new(1, -3)) != -1)
+                    await World.Instance.Entities.AnimatedMove(new(1, -3), new HexCoords(1, -2),
+                        new List<HexCoords> { new(1, -3), new(1, -2) });
                 World.Instance.Entities.Player.CanMove = true;
                 World.Instance.Entities.SpawnEnemy(new HexCoords(-1, -2), TileLookUp.GenericEnemyId);
                 await World.Instance.Entities.SpawnEnemy(new HexCoords(1, -3), TileLookUp.GenericEnemyId);

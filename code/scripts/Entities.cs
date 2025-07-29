@@ -107,7 +107,7 @@ public partial class Entities : Node2D
     
     public void SaveScore()
     {
-        if(Score > _highScore) Game.SaveScore(Score);
+        if(Score > _highScore && World.Instance.IsEndlessWorld) Game.SaveScore(Score);
     }
 
     public void SetupCamera()
@@ -119,6 +119,7 @@ public partial class Entities : Node2D
     public async void StartGameLoop()
     {
         Score = 0;
+        _currentTurn = 0;
         LoadScore();
         EmitSignal("UpdateTimeLine");
         InitializeQueue();
@@ -126,7 +127,8 @@ public partial class Entities : Node2D
     }
 
     public bool DoorsEnabled = false;
-    
+
+    private int _currentTurn;
     private async Task TurnHandle()
     {
         if (World.Instance.IsEndlessWorld) await EndlessModeChanges();
@@ -137,6 +139,7 @@ public partial class Entities : Node2D
         if (currentCharacterId == TileLookUp.PlayerId)
         {
             Score++;
+            _currentTurn++;
             _isPlayerTurn = true;
             _eligibleTiles = HexUtil
                 .FloodFill(Queue.First(), 4,
@@ -175,7 +178,7 @@ public partial class Entities : Node2D
     private async Task EndlessModeChanges()
     {
         //First Update other rooms
-        if (Score % 5 == 0 || Score == 1)
+        if (_currentTurn % 5 == 0 || _currentTurn == 1)
         {
             var rooms = World.Instance.GetRoomsExcept(World.Instance.CurrentRoom);
             var area = HexUtil.FloodFill(new(0, 0), 4, (c) => c.NeighborCoords()).SelectMany(subList => subList);
@@ -185,7 +188,7 @@ public partial class Entities : Node2D
             }
         }
         
-        if (Score % 10 == 0)
+        if (_currentTurn % 10 == 0)
         {
             Player.Heal(1);
         }
@@ -195,7 +198,7 @@ public partial class Entities : Node2D
         {
             var freeTiles = HexUtil.FloodFill(new(0, 0), 5,
                 hex => hex.NeighborCoords()).SelectMany(subList => subList).Where(n => World.Instance.CurrentRoom.IsTileWalkable(n) && IsTileEmpty(n)).Shuffled();
-            var spawnBudget = int.Min((Score + 3) / 2, 5) - (Queue.Count - 1);
+            var spawnBudget = int.Min((_currentTurn + 3) / 2, 5) - (Queue.Count - 1);
             foreach (var tile in freeTiles)
             {
                 if (spawnBudget > 0)

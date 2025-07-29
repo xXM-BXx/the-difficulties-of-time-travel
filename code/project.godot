@@ -16,6 +16,7 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/use_filter=false
 boot_splash/image="uid://ddv4wse51er66"
 config/icon="uid://br6tq3hpvlqcr"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

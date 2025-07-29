@@ -1,2 +1,3 @@
-# the-difficulties-of-time-travel
-A hex-tile game in Godot.
+# The Difficulties of Time Travel
+A game I created for an university project. You can do whatever you want.
+To run download a release and execute.
